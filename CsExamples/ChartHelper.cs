@@ -53,7 +53,7 @@ namespace CsExamples
             {
                 if (null != prevPoint)
                 {
-                    deltas[index++] = (int)Math.Abs(point.Yvalue - prevPoint.Yvalue);
+                    deltas[index++] = (int)Math.Abs(point.YValue - prevPoint.YValue);
                 }
                 prevPoint = point;
             }
@@ -97,8 +97,8 @@ namespace CsExamples
                     }
                     else
                     {
-                        prevDelta = prevPoint.Yvalue - point.Yvalue;
-                        pivotDelta = (pivotPoint.Yvalue - point.Yvalue);
+                        prevDelta = prevPoint.YValue - point.YValue;
+                        pivotDelta = (pivotPoint.YValue - point.YValue);
 
                         if ((pivotDelta == 0) || (prevDelta * prevPrevDelta > 0 && Math.Abs(pivotDelta) < optimizeThresold))
                         {
