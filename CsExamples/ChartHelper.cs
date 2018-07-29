@@ -27,19 +27,19 @@ namespace CsExamples
             string seriesName, 
             IEnumerable<IChartSeriesPointCollection> dataCollection, 
             int optimizeLevel = 0, 
-            System.Windows.Forms.DataVisualization.Charting.ChartValueType chartValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Auto,
+            System.Windows.Forms.DataVisualization.Charting.ChartValueType chartXValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Auto,
             System.Windows.Forms.DataVisualization.Charting.SeriesChartType seriesChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine
             )
         {
             int optimizeThresold = (int)(getDeltaMedian(dataCollection) * ((double)optimizeLevel / 3.0));
             Console.WriteLine("optimizeThresold {0}", optimizeThresold);
 
-            var optimizedDataList = optimizeData(dataCollection, optimizeThresold);
+            var optimizedDataList = optimizeSeriesData(dataCollection, optimizeThresold);
             Console.WriteLine("OptimizedDataList Count: {0}", optimizedDataList.Count);
 
             chart.Series.Add(seriesName);
-            chart.Series[seriesName].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Auto;
-            chart.Series[seriesName].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            chart.Series[seriesName].XValueType = chartXValueType;
+            chart.Series[seriesName].ChartType = seriesChartType;
             chart.Series[seriesName].Points.DataBind(optimizedDataList, "Xvalue", "Yvalue", null);
         }
 
@@ -74,7 +74,7 @@ namespace CsExamples
             return median + 1;
         }
 
-        private static List<IChartSeriesPointCollection> optimizeData(IEnumerable<IChartSeriesPointCollection> dataCollection, int optimizeThresold)
+        private static List<IChartSeriesPointCollection> optimizeSeriesData(IEnumerable<IChartSeriesPointCollection> dataCollection, int optimizeThresold)
         {
             if (optimizeThresold <= 0)
             {
@@ -88,7 +88,6 @@ namespace CsExamples
             
             foreach (var point in dataCollection)
             {
-                var xv = Convert.ToInt32(point.Xvalue);
                 prevPrevDelta = prevDelta;
                 if (null != prevPoint)
                 {
