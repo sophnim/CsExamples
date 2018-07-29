@@ -8,8 +8,8 @@ namespace CsExamples
 {
     public interface IChartSeriesPointCollection
     {
-        object Xvalue { get; set; }
-        long Yvalue { get; set; }
+        object XValue { get; set; }
+        long YValue { get; set; }
     }
 
     public class ChartHelper

@@ -88,14 +88,14 @@ namespace CsExamples
     public class ChartData : IChartSeriesPointCollection
     {
         private object xvalue;
-        public object Xvalue
+        public object XValue
         {
             get { return xvalue; }
             set { xvalue = value; }
         }
 
         private long yvalue;
-        public long Yvalue
+        public long YValue
         {
             get { return yvalue; }
             set { yvalue = value; }
@@ -103,8 +103,8 @@ namespace CsExamples
 
         public ChartData(object xv, long yv)
         {
-            this.Xvalue = xv;
-            this.Yvalue = yv;
+            this.XValue = xv;
+            this.YValue = yv;
         }
     }
 }
