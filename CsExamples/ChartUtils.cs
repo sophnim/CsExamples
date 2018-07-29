@@ -14,7 +14,7 @@ namespace ChartUtils
 
     public class ChartHelper
     {
-        public static void ClearSeries(System.Windows.Forms.DataVisualization.Charting.Chart chart)
+        public static void ClearAllSeries(System.Windows.Forms.DataVisualization.Charting.Chart chart)
         {
             while (chart.Series.Count > 0)
             {

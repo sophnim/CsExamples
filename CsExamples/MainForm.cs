@@ -59,7 +59,7 @@ namespace CsExamples
         {
             Random r = new Random();
 
-            ChartUtils.ChartHelper.ClearSeries(TestChart);
+            ChartUtils.ChartHelper.ClearAllSeries(TestChart);
 
             var now = DateTime.Now;
             var data1 = new List<ChartData>();
