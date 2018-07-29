@@ -94,8 +94,6 @@ namespace CsExamples
                         prevDelta = prevPoint.Yvalue - point.Yvalue;
                         pivotDelta = (pivotPoint.Yvalue - point.Yvalue);
 
-                        //Console.WriteLine("prevDelta {0} pivotDelta {1} optTh {2}", prevDelta, pivotDelta, optimizeThresold);
-
                         if ((pivotDelta == 0) || (prevDelta * prevPrevDelta > 0 && Math.Abs(pivotDelta) < optimizeThresold))
                         {
                             prevPoint = point;
