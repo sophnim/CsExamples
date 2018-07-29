@@ -6,7 +6,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
 
-namespace CsExamples
+namespace FileUtils
 {
     public class FileHelper
     {

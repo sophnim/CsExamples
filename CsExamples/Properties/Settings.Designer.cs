@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CsExamples.Properties
+namespace ChartHelper.Properties
 {
 
 

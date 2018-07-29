@@ -8,17 +8,20 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BackgroundWorkerUtils;
+using ChartUtils;
+using FileUtils;
 
 namespace CsExamples
 {
     public partial class MainForm : Form
     {
-        BackgroundWorkerHelper bgwHelper;
+        BackgroundWorkerUtils.BackgroundWorkerHelper bgwHelper;
 
         public MainForm()
         {
             InitializeComponent();
-            bgwHelper = new BackgroundWorkerHelper(backgroundWorkFunc, onBackgroundProgressChangedFunc, onBackgroundWorkCompletedFunc);
+            bgwHelper = new BackgroundWorkerUtils.BackgroundWorkerHelper(backgroundWorkFunc, onBackgroundProgressChangedFunc, onBackgroundWorkCompletedFunc);
         }
 
         private void backgroundWorkFunc()
@@ -55,8 +58,8 @@ namespace CsExamples
         private void ChartTestButton_Click(object sender, EventArgs e)
         {
             Random r = new Random();
-            
-            ChartHelper.ClearSeries(TestChart);
+
+            ChartUtils.ChartHelper.ClearSeries(TestChart);
 
             var now = DateTime.Now;
             var data1 = new List<ChartData>();
@@ -74,9 +77,9 @@ namespace CsExamples
             }
 
             var optimzeLevel = ChartOptimizeTrackBar.Maximum - ChartOptimizeTrackBar.Value;
-            ChartHelper.AddSeries(TestChart, "Sin", data1, optimzeLevel);
-            ChartHelper.AddSeries(TestChart, "Cos", data2, optimzeLevel);
-            ChartHelper.AddSeries(TestChart, "Peak", data3, optimzeLevel);
+            ChartUtils.ChartHelper.AddSeries(TestChart, "Sin", data1, optimzeLevel);
+            ChartUtils.ChartHelper.AddSeries(TestChart, "Cos", data2, optimzeLevel);
+            ChartUtils.ChartHelper.AddSeries(TestChart, "Peak", data3, optimzeLevel);
         }
 
         private void MainForm_Load(object sender, EventArgs e)

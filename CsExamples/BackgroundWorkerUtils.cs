@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-namespace CsExamples
+namespace BackgroundWorkerUtils
 {
     public class BackgroundWorkerHelper
     {
@@ -55,17 +55,8 @@ namespace CsExamples
             this.onProgressChangedFunc(e.ProgressPercentage);
         }
 
-        // 작업 완료 - UI Thread
         void OnCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            // 에러가 있는지 체크
-            bool error = (e.Error == null);
-            if (e.Error != null)
-            {
-                Console.WriteLine("OnCompleted error!");
-                return;
-            }
-
             onCompletedFunc(e.Error == null);
         }
     }
