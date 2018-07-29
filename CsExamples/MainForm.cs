@@ -61,15 +61,22 @@ namespace CsExamples
             var now = DateTime.Now;
             var data1 = new List<ChartData>();
             var data2 = new List<ChartData>();
-            for (var i = 0; i < 100; i++)
+            var data3 = new List<ChartData>();
+            for (var i = 0; i < 1000; i++)
             {
-                data1.Add(new ChartData(now.AddSeconds(i), (long)(Math.Sin((double)i * 0.1) * 1000.0)));
-                data2.Add(new ChartData(now.AddSeconds(i), (long)(Math.Cos((double)i * 0.1) * 1000.0)));
+                data1.Add(new ChartData(i, (long)(Math.Sin((double)i * 0.01) * 100000.0)));
+                data2.Add(new ChartData(i, (long)(Math.Cos((double)i * 0.01) * 100000.0)));
+
+                if (i % 10 == 0)
+                    data3.Add(new ChartData(i, i*100));
+                else 
+                    data3.Add(new ChartData(i, (long)(i * 0.1)));
             }
 
             var optimzeLevel = ChartOptimizeTrackBar.Value;
-            //ChartHelper.AddSeries(TestChart, "Sin", data1, optimzeLevel);
+            ChartHelper.AddSeries(TestChart, "Sin", data1, optimzeLevel);
             ChartHelper.AddSeries(TestChart, "Cos", data2, optimzeLevel);
+            ChartHelper.AddSeries(TestChart, "Peak", data3, optimzeLevel);
         }
 
         private void MainForm_Load(object sender, EventArgs e)

@@ -64,85 +64,65 @@ namespace CsExamples
                 median = sortedNumbers.ElementAt(halfIndex);
             }
 
-            Console.WriteLine("median: {0}", median);
             return median + 1;
         }
 
         private static List<IChartSeriesPointCollection> optimizeData(IEnumerable<IChartSeriesPointCollection> dataCollection, int optimizeThresold)
         {
-            /*
             if (optimizeThresold <= 0)
             {
                 return dataCollection.ToList<IChartSeriesPointCollection>();
             }
-            */
-
+ 
             var seriesPointList = new List<IChartSeriesPointCollection>();
 
             IChartSeriesPointCollection prevPoint = null, pivotPoint = null, addPoint = null;
-            long prevDeltaX = 0, prevDeltaY = 0;
-
+            long pivotDelta = 0, prevDelta = 0, prevPrevDelta;
+            
             foreach (var point in dataCollection)
             {
+                var xv = Convert.ToInt32(point.Xvalue);
+                prevPrevDelta = prevDelta;
                 if (null != prevPoint)
                 {
-                    var curDeltaY = point.Yvalue - prevPoint.Yvalue;
-                    //var curDeltaX = point.Xvalue - prevPoint.Xvalue;
-                    Console.Write("CurDelta ({0}) ", curDeltaY);
-                    if (prevDeltaY != curDeltaY)
-                    {
-                        seriesPointList.Add(point);
-                        Console.WriteLine("Draw");
-                    }
-                    else Console.WriteLine("Skip");
-
-                    //prevDeltaX = curDeltaX;
-                    prevDeltaY = curDeltaY;
-
-
-                    
-                    /*if (null == pivotPoint)
+                    if (null == pivotPoint)
                     {
                         pivotPoint = point;
                     }
                     else
                     {
-                        var delta = Math.Abs(pivotPoint.Yvalue - point.Yvalue);
-                        if (delta < optimizeThresold)
+                        prevDelta = prevPoint.Yvalue - point.Yvalue;
+                        pivotDelta = (pivotPoint.Yvalue - point.Yvalue);
+
+                        //Console.WriteLine("prevDelta {0} pivotDelta {1} optTh {2}", prevDelta, pivotDelta, optimizeThresold);
+
+                        if ((pivotDelta == 0) || (prevDelta * prevPrevDelta > 0 && Math.Abs(pivotDelta) < optimizeThresold))
                         {
                             prevPoint = point;
                             continue;
                         }
 
-
                         pivotPoint = point;
-                        Console.WriteLine("Pivot update {0}", pivotPoint.Xvalue);
-                        // 방금 전에 넣지 않았다면 추가
                         if (addPoint != prevPoint)
                         {
                             seriesPointList.Add(prevPoint);
-                            Console.WriteLine("Add prevPoint: {0} {1}", prevPoint.Xvalue, prevPoint.Yvalue);
                         }
                     }
 
                     seriesPointList.Add(point);
-                    Console.WriteLine("Add point: {0} {1}", point.Xvalue, point.Yvalue);
                     addPoint = point;
-                    */
+                    
                 }
 
                 prevPoint = point;
             }
 
-            /*
             var lastPoint = dataCollection.ElementAt(dataCollection.Count() - 1);
             if (addPoint != lastPoint)
             {
                 seriesPointList.Add(lastPoint);
-                Console.WriteLine("Add lastPoint: {0} {1}", lastPoint.Xvalue, lastPoint.Yvalue);
             }
-            */
-
+            
             return seriesPointList;
         }
     }

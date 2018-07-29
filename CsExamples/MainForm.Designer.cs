@@ -82,7 +82,7 @@
             // ChartOptimizeTrackBar
             // 
             this.ChartOptimizeTrackBar.Location = new System.Drawing.Point(602, 318);
-            this.ChartOptimizeTrackBar.Maximum = 5;
+            this.ChartOptimizeTrackBar.Maximum = 40;
             this.ChartOptimizeTrackBar.Name = "ChartOptimizeTrackBar";
             this.ChartOptimizeTrackBar.Size = new System.Drawing.Size(104, 45);
             this.ChartOptimizeTrackBar.TabIndex = 4;
