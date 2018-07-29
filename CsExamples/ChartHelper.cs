@@ -111,7 +111,6 @@ namespace CsExamples
 
                     seriesPointList.Add(point);
                     addPoint = point;
-                    
                 }
 
                 prevPoint = point;

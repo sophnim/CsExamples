@@ -35,6 +35,7 @@
             this.BackgroundWorkerTestButton = new System.Windows.Forms.Button();
             this.TestProgressBar = new System.Windows.Forms.ProgressBar();
             this.ChartOptimizeTrackBar = new System.Windows.Forms.TrackBar();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.TestChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChartOptimizeTrackBar)).BeginInit();
             this.SuspendLayout();
@@ -88,11 +89,21 @@
             this.ChartOptimizeTrackBar.TabIndex = 4;
             this.ChartOptimizeTrackBar.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(498, 330);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 12);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Chart Resolution";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.ChartOptimizeTrackBar);
             this.Controls.Add(this.TestProgressBar);
             this.Controls.Add(this.BackgroundWorkerTestButton);
@@ -114,6 +125,7 @@
         private System.Windows.Forms.Button BackgroundWorkerTestButton;
         private System.Windows.Forms.ProgressBar TestProgressBar;
         private System.Windows.Forms.TrackBar ChartOptimizeTrackBar;
+        private System.Windows.Forms.Label label1;
     }
 }
 

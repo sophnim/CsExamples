@@ -73,7 +73,7 @@ namespace CsExamples
                     data3.Add(new ChartData(i, (long)(i * 0.1)));
             }
 
-            var optimzeLevel = ChartOptimizeTrackBar.Value;
+            var optimzeLevel = ChartOptimizeTrackBar.Maximum - ChartOptimizeTrackBar.Value;
             ChartHelper.AddSeries(TestChart, "Sin", data1, optimzeLevel);
             ChartHelper.AddSeries(TestChart, "Cos", data2, optimzeLevel);
             ChartHelper.AddSeries(TestChart, "Peak", data3, optimzeLevel);
