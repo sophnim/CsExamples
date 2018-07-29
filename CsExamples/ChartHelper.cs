@@ -22,7 +22,14 @@ namespace CsExamples
             }
         }
 
-        public static void AddSeries(System.Windows.Forms.DataVisualization.Charting.Chart chart, string seriesName, IEnumerable<IChartSeriesPointCollection> dataCollection, int optimizeLevel)
+        public static void AddSeries(
+            System.Windows.Forms.DataVisualization.Charting.Chart chart, 
+            string seriesName, 
+            IEnumerable<IChartSeriesPointCollection> dataCollection, 
+            int optimizeLevel = 0, 
+            System.Windows.Forms.DataVisualization.Charting.ChartValueType chartValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Auto,
+            System.Windows.Forms.DataVisualization.Charting.SeriesChartType seriesChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine
+            )
         {
             int optimizeThresold = (int)(getDeltaMedian(dataCollection) * ((double)optimizeLevel / 3.0));
             Console.WriteLine("optimizeThresold {0}", optimizeThresold);
@@ -76,7 +83,7 @@ namespace CsExamples
  
             var seriesPointList = new List<IChartSeriesPointCollection>();
 
-            IChartSeriesPointCollection prevPoint = null, pivotPoint = null, addPoint = null;
+            IChartSeriesPointCollection prevPoint = null, pivotPoint = null, lastAddPoint = null;
             long pivotDelta = 0, prevDelta = 0, prevPrevDelta;
             
             foreach (var point in dataCollection)
@@ -101,21 +108,21 @@ namespace CsExamples
                         }
 
                         pivotPoint = point;
-                        if (addPoint != prevPoint)
+                        if (lastAddPoint != prevPoint)
                         {
                             seriesPointList.Add(prevPoint);
                         }
                     }
 
                     seriesPointList.Add(point);
-                    addPoint = point;
+                    lastAddPoint = point;
                 }
 
                 prevPoint = point;
             }
 
             var lastPoint = dataCollection.ElementAt(dataCollection.Count() - 1);
-            if (addPoint != lastPoint)
+            if (lastAddPoint != lastPoint)
             {
                 seriesPointList.Add(lastPoint);
             }
