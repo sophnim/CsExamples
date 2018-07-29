@@ -8,7 +8,7 @@ namespace CsExamples
 {
     public interface IChartSeriesPointCollection
     {
-        string Xvalue { get; set; }
+        object Xvalue { get; set; }
         long Yvalue { get; set; }
     }
 
@@ -70,19 +70,38 @@ namespace CsExamples
 
         private static List<IChartSeriesPointCollection> optimizeData(IEnumerable<IChartSeriesPointCollection> dataCollection, int optimizeThresold)
         {
+            /*
             if (optimizeThresold <= 0)
             {
                 return dataCollection.ToList<IChartSeriesPointCollection>();
             }
+            */
 
             var seriesPointList = new List<IChartSeriesPointCollection>();
 
             IChartSeriesPointCollection prevPoint = null, pivotPoint = null, addPoint = null;
+            long prevDeltaX = 0, prevDeltaY = 0;
+
             foreach (var point in dataCollection)
             {
                 if (null != prevPoint)
                 {
-                    if (null == pivotPoint)
+                    var curDeltaY = point.Yvalue - prevPoint.Yvalue;
+                    //var curDeltaX = point.Xvalue - prevPoint.Xvalue;
+                    Console.Write("CurDelta ({0}) ", curDeltaY);
+                    if (prevDeltaY != curDeltaY)
+                    {
+                        seriesPointList.Add(point);
+                        Console.WriteLine("Draw");
+                    }
+                    else Console.WriteLine("Skip");
+
+                    //prevDeltaX = curDeltaX;
+                    prevDeltaY = curDeltaY;
+
+
+                    
+                    /*if (null == pivotPoint)
                     {
                         pivotPoint = point;
                     }
@@ -109,18 +128,20 @@ namespace CsExamples
                     seriesPointList.Add(point);
                     Console.WriteLine("Add point: {0} {1}", point.Xvalue, point.Yvalue);
                     addPoint = point;
+                    */
                 }
 
                 prevPoint = point;
             }
 
+            /*
             var lastPoint = dataCollection.ElementAt(dataCollection.Count() - 1);
             if (addPoint != lastPoint)
             {
                 seriesPointList.Add(lastPoint);
                 Console.WriteLine("Add lastPoint: {0} {1}", lastPoint.Xvalue, lastPoint.Yvalue);
             }
-
+            */
 
             return seriesPointList;
         }

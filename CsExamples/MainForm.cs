@@ -58,16 +58,17 @@ namespace CsExamples
             
             ChartHelper.ClearSeries(TestChart);
 
+            var now = DateTime.Now;
             var data1 = new List<ChartData>();
             var data2 = new List<ChartData>();
-            for (var i = 0; i < 1000; i++)
+            for (var i = 0; i < 100; i++)
             {
-                data1.Add(new ChartData(i.ToString(), (long)(Math.Sin((double)i * 0.01) * 1000.0)));
-                data2.Add(new ChartData(i.ToString(), (long)(Math.Cos((double)i * 0.01) * 1000.0)));
+                data1.Add(new ChartData(now.AddSeconds(i), (long)(Math.Sin((double)i * 0.1) * 1000.0)));
+                data2.Add(new ChartData(now.AddSeconds(i), (long)(Math.Cos((double)i * 0.1) * 1000.0)));
             }
 
             var optimzeLevel = ChartOptimizeTrackBar.Value;
-            ChartHelper.AddSeries(TestChart, "Sin", data1, optimzeLevel);
+            //ChartHelper.AddSeries(TestChart, "Sin", data1, optimzeLevel);
             ChartHelper.AddSeries(TestChart, "Cos", data2, optimzeLevel);
         }
 
@@ -79,8 +80,8 @@ namespace CsExamples
 
     public class ChartData : IChartSeriesPointCollection
     {
-        private string xvalue;
-        public string Xvalue
+        private object xvalue;
+        public object Xvalue
         {
             get { return xvalue; }
             set { xvalue = value; }
@@ -93,7 +94,7 @@ namespace CsExamples
             set { yvalue = value; }
         }
 
-        public ChartData(string xv, long yv)
+        public ChartData(object xv, long yv)
         {
             this.Xvalue = xv;
             this.Yvalue = yv;
