@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.TestChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ChartTestButton = new System.Windows.Forms.Button();
             this.BackgroundWorkerTestButton = new System.Windows.Forms.Button();
             this.ChartOptimizeTrackBar = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.TestProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.StatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.TestChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChartOptimizeTrackBar)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -45,13 +45,13 @@
             // 
             // TestChart
             // 
-            chartArea4.Name = "ChartArea1";
-            this.TestChart.ChartAreas.Add(chartArea4);
+            chartArea1.Name = "ChartArea1";
+            this.TestChart.ChartAreas.Add(chartArea1);
             this.TestChart.Location = new System.Drawing.Point(12, 12);
             this.TestChart.Name = "TestChart";
-            series4.ChartArea = "ChartArea1";
-            series4.Name = "Series1";
-            this.TestChart.Series.Add(series4);
+            series1.ChartArea = "ChartArea1";
+            series1.Name = "Series1";
+            this.TestChart.Series.Add(series1);
             this.TestChart.Size = new System.Drawing.Size(776, 300);
             this.TestChart.TabIndex = 0;
             this.TestChart.Text = "chart1";
@@ -97,24 +97,24 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.TestProgressBar});
+            this.StatusLabel,
+            this.StatusProgressBar});
             this.statusStrip1.Location = new System.Drawing.Point(0, 428);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(800, 22);
             this.statusStrip1.TabIndex = 6;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // TestProgressBar
+            // StatusLabel
             // 
-            this.TestProgressBar.Name = "TestProgressBar";
-            this.TestProgressBar.Size = new System.Drawing.Size(100, 16);
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Size = new System.Drawing.Size(109, 17);
+            this.StatusLabel.Text = "BackgroundWorker";
             // 
-            // toolStripStatusLabel1
+            // StatusProgressBar
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(109, 17);
-            this.toolStripStatusLabel1.Text = "BackgroundWorker";
+            this.StatusProgressBar.Name = "StatusProgressBar";
+            this.StatusProgressBar.Size = new System.Drawing.Size(100, 16);
             // 
             // MainForm
             // 
@@ -146,8 +146,8 @@
         private System.Windows.Forms.TrackBar ChartOptimizeTrackBar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripProgressBar TestProgressBar;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripProgressBar StatusProgressBar;
+        private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
     }
 }
 

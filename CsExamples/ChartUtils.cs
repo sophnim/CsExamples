@@ -31,11 +31,20 @@ namespace ChartUtils
             System.Windows.Forms.DataVisualization.Charting.SeriesChartType seriesChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine
             )
         {
-            int optimizeThresold = (int)(getDeltaMedian(dataCollection) * ((double)optimizeLevel / 3.0));
-            Console.WriteLine("optimizeThresold {0}", optimizeThresold);
+            const int optimizeMinSize = 10;
+            IEnumerable<IChartSeriesPointCollection> optimizedDataList; 
+            if (dataCollection.Count() > optimizeMinSize)
+            {
+                int optimizeThresold = (int)(getDeltaMedian(dataCollection) * ((double)optimizeLevel));
+                Console.WriteLine("optimizeThresold {0}", optimizeThresold);
 
-            var optimizedDataList = optimizeSeriesData(dataCollection, optimizeThresold);
-            Console.WriteLine("OptimizedDataList Count: {0}", optimizedDataList.Count);
+                optimizedDataList = optimizeSeriesData(dataCollection, optimizeThresold);
+                Console.WriteLine("OptimizedDataList Count: {0}", optimizedDataList.Count());
+            }
+            else
+            {
+                optimizedDataList = dataCollection;
+            }
 
             chart.Series.Add(seriesName);
             chart.Series[seriesName].XValueType = chartXValueType;
@@ -74,11 +83,11 @@ namespace ChartUtils
             return median + 1;
         }
 
-        private static List<IChartSeriesPointCollection> optimizeSeriesData(IEnumerable<IChartSeriesPointCollection> dataCollection, int optimizeThresold)
+        private static IEnumerable<IChartSeriesPointCollection> optimizeSeriesData(IEnumerable<IChartSeriesPointCollection> dataCollection, int optimizeThresold)
         {
             if (optimizeThresold <= 0)
             {
-                return dataCollection.ToList<IChartSeriesPointCollection>();
+                return dataCollection;
             }
  
             var seriesPointList = new List<IChartSeriesPointCollection>();
@@ -116,6 +125,12 @@ namespace ChartUtils
                     seriesPointList.Add(point);
                     lastAddPoint = point;
                 }
+                else
+                {
+                    // 첫번째 포인트는 무조건 추가한다 
+                    seriesPointList.Add(point);
+                    lastAddPoint = point;
+                }
 
                 prevPoint = point;
             }
@@ -123,6 +138,7 @@ namespace ChartUtils
             var lastPoint = dataCollection.ElementAt(dataCollection.Count() - 1);
             if (lastAddPoint != lastPoint)
             {
+                // 마지막 포인트도 무조건 추가
                 seriesPointList.Add(lastPoint);
             }
             
