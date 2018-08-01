@@ -87,11 +87,11 @@ namespace CsExamples
 
         private void ChartTestButton_Click(object sender, EventArgs e)
         {
-            Random r = new Random();
-
-            var optimzeLevel = ChartOptimizeTrackBar.Maximum - ChartOptimizeTrackBar.Value;
             ChartUtils.ChartHelper.ClearAllSeries(TestChart);
 
+            /* 의미 없다. BeginInvoke를 Parallel ForEach로 돌려도 성능 향상은 없다. 
+            Random r = new Random();
+            var optimzeLevel = ChartOptimizeTrackBar.Maximum - ChartOptimizeTrackBar.Value;
             Parallel.ForEach(this.chartDataDic, keyValuePair =>
             {
                 TestChart.BeginInvoke(new Action(() =>
@@ -99,13 +99,14 @@ namespace CsExamples
                     ChartUtils.ChartHelper.AddSeries(TestChart, keyValuePair.Key, keyValuePair.Value, optimzeLevel);
                 }));   
             });
-
-            /*
+            */
+            
+            
             var now = DateTime.Now;
             var data1 = new List<ChartData>();
             var data2 = new List<ChartData>();
             var data3 = new List<ChartData>();
-            for (var i = 0; i < 1000; i++)
+            for (var i = 0; i < 1000000; i++)
             {
                 data1.Add(new ChartData(i, (long)(Math.Sin((double)i * 0.01) * 100000.0)));
                 data2.Add(new ChartData(i, (long)(Math.Cos((double)i * 0.01) * 100000.0)));
@@ -120,7 +121,7 @@ namespace CsExamples
             ChartUtils.ChartHelper.AddSeries(TestChart, "Sin", data1, optimzeLevel);
             ChartUtils.ChartHelper.AddSeries(TestChart, "Cos", data2, optimzeLevel);
             ChartUtils.ChartHelper.AddSeries(TestChart, "Peak", data3, optimzeLevel);
-            */
+            
         }
 
         private void MainForm_Load(object sender, EventArgs e)
